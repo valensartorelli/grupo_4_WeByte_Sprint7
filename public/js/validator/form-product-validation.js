@@ -10,15 +10,15 @@ const price = document.querySelector("#price");
 const stock = document.querySelector("#stock");
 // const image1 = document.getElementById('image1');
 // const brand = document.getElementsByName('brand');
-const category = document.getElementsByName("categoryId");
+//const category = document.getElementsByName("categoryId");
 // const color = document.getElementsByName('color');
 // const size = document.getElementsByName('size');
 
 // Eventos
 form.addEventListener('submit', function (e) {
     let hasErrors = { 
-        category: true,
-        //category: categoryValidator(),
+        //category: true,
+        category: categoryValidator(),
         // brand: true,
         name: nameValidator(),
         description: descriptionValidator(),
@@ -32,7 +32,7 @@ form.addEventListener('submit', function (e) {
     };
     
     // Hay errores hasta que se demuestre lo contrario.
-    category.forEach(category => { hasErrors.category = category.selected ? false : hasErrors.category });
+    //category.forEach(category => { hasErrors.category = category.selected ? false : hasErrors.category });
     // brand.forEach(brand => { hasErrors.brand = brand.selected ? false : hasErrors.brand });
     // color.forEach(color => { hasErrors.color = color.selected ? false : hasErrors.color });
     // size.forEach(size => { hasErrors.size = size.selected ? false : hasErrors.size });
@@ -43,7 +43,7 @@ form.addEventListener('submit', function (e) {
     ) e.preventDefault();
 
     // document.getElementById('brand_error').innerText = hasErrors.brand ? 'Debe seleccionar una marca': '';
-    document.getElementById('category_error').innerText = hasErrors.category ? 'Debe seleccionar una categoríaaaa' : '';
+    //document.getElementById('category_error').innerText = hasErrors.category ? 'Debe seleccionar una categoríaaaa' : '';
     // document.getElementById('color_error').innerText = hasErrors.color ? 'Debe seleccionar un color' : '';
     // document.getElementById('size_error').innerText = hasErrors.size ? 'Debe seleccionar un talle' : '';
     // document.getElementById('visibility_error').innerText = hasErrors.visibility ? 'Debe seleccionar un estado': '';
@@ -158,12 +158,14 @@ function stockValidator () {
 
 function categoryValidator () {
     const category = document.getElementsByName("categoryId").selectedIndex;
-    let id = 'stock_error';
+    let id = 'stock_category';
     //const categoryErrors = document.getElementById('category_error').innerText = hasErrors.category ? 'Debe seleccionar una categoríaaaa' : '';
     if( category == null || category == 0 ) {
-        alert("Debe seleccionar una categoria");
-        //categoryErrors.classList.add('error-input');
-        return true					
+        // alert("Debe seleccionar una categoria");
+        // return true	
+        writeMsg( { id, msg: 'Debe seleccionar una categoriaaaaaaa' } );
+        category.classList.add('error-input');
+        return true
     }
 }
 

@@ -98,19 +98,19 @@ const productController = {
     create: async (req, res) =>{
         console.log('entre en el Create product')
         console.log('----------------------------')
-        console.log(req.body.name);
-        console.log(req.body.stock);
-        console.log(req.body.stock_min);
-        console.log(req.body.stock_max);
-        console.log(req.body.description);
-        console.log(req.body.price);
-        console.log(req.body.brandId);
-        console.log(req.body.categoryId);
-        console.log(req.body.sizeId);
-        console.log(req.body.colorId);
-        console.log(req.body.visibilityId);
-        console.log(req.body.home);
-        console.log(req.body.extended_description);   
+        // console.log(req.body.name);
+        // console.log(req.body.stock);
+        // console.log(req.body.stock_min);
+        // console.log(req.body.stock_max);
+        // console.log(req.body.description);
+        // console.log(req.body.price);
+        // console.log(req.body.brandId);
+        // console.log(req.body.categoryId);
+        // console.log(req.body.sizeId);
+        // console.log(req.body.colorId);
+        // console.log(req.body.visibilityId);
+        // console.log(req.body.home);
+        // console.log(req.body.extended_description);   
     // validacion trae las relaciones
     const products = await db.Product.findByPk(req.params.id);
     let allCategories = await Category.findAll();

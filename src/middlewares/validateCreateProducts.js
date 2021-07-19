@@ -18,6 +18,10 @@ module.exports = [
 		let file4 = req.files.image4;
         let file5 = req.files.image5;
         let oldImage1 = req.body.oldImage1;
+        let oldImage2 = req.body.oldImage2;
+        let oldImage3 = req.body.oldImage3;
+        let oldImage4 = req.body.oldImage4;
+        let oldImage5 = req.body.oldImage4;
         console.log("image1");
         console.log(file);
      
