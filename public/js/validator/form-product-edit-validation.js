@@ -8,45 +8,28 @@ const description = document.querySelector("#description");
 const descriptionExt = document.querySelector("#extended_description");
 const price = document.querySelector("#price");
 const stock = document.querySelector("#stock");
-// const image1 = document.getElementById('image1');
-// const brand = document.getElementsByName('brand');
-//const category = document.getElementsByName("categoryId");
-// const color = document.getElementsByName('color');
-// const size = document.getElementsByName('size');
+
+
 
 // Eventos
 form.addEventListener('submit', function (e) {
     let hasErrors = { 
-        //category: true,
-        //category: categoryValidator(),
-        // brand: true,
+        category: categoryValidator(),
+        brand: brandValidator(),
         name: nameValidator(),
         description: descriptionValidator(),
         descriptionExt: descriptionExtValidator(),
         price: priceValidator(),    
-        // color: true,
-        // size: true,
+        color: colorValidator(),
+        size: sizeValidator(),
         stock: stockValidator(),
-        // image: imageValidator(),
-        // visivility: true
+        visivility: visibilityValidator(),
     };
     
-    // Hay errores hasta que se demuestre lo contrario.
-    //category.forEach(category => { hasErrors.category = category.selected ? false : hasErrors.category });
-    // brand.forEach(brand => { hasErrors.brand = brand.selected ? false : hasErrors.brand });
-    // color.forEach(color => { hasErrors.color = color.selected ? false : hasErrors.color });
-    // size.forEach(size => { hasErrors.size = size.selected ? false : hasErrors.size });
-    // visibility.forEach(visibility => { hasErrors.visibility = visibility.selected ? false : hasErrors.visibility });
 
-    if ( 
-        hasErrors.name || hasErrors.description || hasErrors.descriptionExt || hasErrors.price || hasErrors.stock
+    if ( hasErrors.category || hasErrors.brand || hasErrors.name || hasErrors.description || hasErrors.descriptionExt || hasErrors.price 
+        || hasErrors.color || hasErrors.size || hasErrors.stock || hasErrors.visivility 
     ) e.preventDefault();
-
-    // document.getElementById('brand_error').innerText = hasErrors.brand ? 'Debe seleccionar una marca': '';
-    //document.getElementById('category_error').innerText = hasErrors.category ? 'Debe seleccionar una categoríaaaa' : '';
-    // document.getElementById('color_error').innerText = hasErrors.color ? 'Debe seleccionar un color' : '';
-    // document.getElementById('size_error').innerText = hasErrors.size ? 'Debe seleccionar un talle' : '';
-    // document.getElementById('visibility_error').innerText = hasErrors.visibility ? 'Debe seleccionar un estado': '';
     
 
 });
@@ -56,8 +39,6 @@ description.addEventListener('blur', descriptionValidator);
 descriptionExt.addEventListener('blur', descriptionExtValidator);
 price.addEventListener('blur', priceValidator);
 stock.addEventListener('blur', stockValidator);
-// inputImage.addEventListener('change', imageValidator);
-
 
 // Funciones 
 writeMsg = ( ...arrToWrite ) => {
@@ -156,45 +137,74 @@ function stockValidator () {
 }
 
 
+// selects
 function categoryValidator () {
-    const category = document.getElementsByName("categoryId").selectedIndex;
-    let id = 'category_error';
-    //const categoryErrors = document.getElementById('category_error').innerText = hasErrors.category ? 'Debe seleccionar una categoríaaaa' : '';
+    const category = document.querySelector("#categoryId").selectedIndex;
+    const errorCategory = document.querySelector("#category_error");
     if( category == null || category == 0 ) {
         // alert("Debe seleccionar una categoria");
         // return true	
-        writeMsg( { id, msg: 'Debe seleccionar una categoriaaaaaaa' } );
-        category.classList.add('error-input');
-        return true
+        errorCategory.innerText = 'Debe seleccionar una categoríaaaa';
+        return true;
+    }
+    else{
+        errorCategory.innerText = '';
+        return false;
     }
 }
 
+function brandValidator () {
+    const brand = document.querySelector("#brandId").selectedIndex;
+    const errorBrand = document.querySelector("#brand_error");
+    if( brand  == null || brand  == 0 ) {	
+        errorBrand.innerText = 'Debe seleccionar una marcaaaa';
+        return true;
+    }
+    else{
+        errorBrand.innerText = '';
+        return false;
+    }
+}
 
+function colorValidator () {
+    const color = document.querySelector("#colorId").selectedIndex;
+    const errorColor = document.querySelector("#color_error");
+    if( color  == null || color  == 0 ) {
+        errorColor.innerText = 'Debe seleccionar un colorrrr';
+        return true;
+    }
+    else{
+        errorColor.innerText = '';
+        return false;
+    }
+}
 
-// function imageValidator () {
-//     let id = 'image_error';
-//     let hasAnyWrongExtFile = false;
-//     for (file of inputImage.files) {
-//         let ext = file.name.split('.')[1];
-//         console.log(ext);
-//         if ( ext !== 'jpg' && ext !== 'jpeg' && ext !== 'png' && ext !== 'gif' ) {
-//             hasAnyWrongExtFile = true;
-//             writeMsg( { id, msg: 'Solo se permite formato .gif, .png, .jpg y .jpeg' } );
-//             inputImage.classList.add('error-input');
-//             return true
-//         }
-//     }
+function sizeValidator () {
+    const size = document.querySelector("#sizeId").selectedIndex;
+    const errorSize = document.querySelector("#size_error");
+    if( size  == null || size  == 0 ) {	
+        errorSize.innerText = 'Debe seleccionar un talleeeee';
+        return true;
+    }
+    else{
+        errorSize.innerText = '';
+        return false;
+    }
+}
 
-//     if (inputImage.files.length != 4) {
-//         writeMsg( { id, msg: 'Se deben subir 4 imágenes' } );
-//         inputImage.classList.add('error-input');
-//         return true
-//     }
+function visibilityValidator () {
+    const visibility = document.querySelector("#visibilityId").selectedIndex;
+    const errorVisibility = document.querySelector("#visibility_error");
+    if( visibility  == null || visibility  == 0 ) {	
+        errorVisibility.innerText = 'Debe seleccionar un estadoooooo';
+        return true;
+    }
+    else{
+        errorVisibility.innerText = '';
+        return false;
+    }
+}
 
-//     writeMsg( { id, msg: '' } );
-//     inputImage.classList.remove('error-input');
-//     return false
-// }
    
 
 // fin onload

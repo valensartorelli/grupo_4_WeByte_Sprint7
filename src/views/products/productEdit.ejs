@@ -29,21 +29,27 @@
 
                                 <div class="fr_nombre">
                                     <label class="fr_lbltexto" for="categoryId" > Categoria </label>
-                                    <select name="categoryId" id="" required>
+                                    <select name="categoryId" id="categoryId" class="control <%= locals.errors && errors.categoryId ? 'is-invalid' : null %>">
                                         <option value="0" disabled>- Seleccione una categoria - </option>
                                         <% allCategories.forEach(category => { %>
                                         <option value="<%= category.id %>"<% if (product.categoryId == category.id) { %> <%= 'selected' %><% }; %>><%= category.name %></option>
                                         <% }); %>
                                     </select>
                                 </div>
+                                <div id="category_error" class="error is-invalid">
+                                    <%= locals && locals.errors && locals.errors.categoryId && locals.errors.categoryId.msg %>
+                                </div>
                                 <div class="fr_nombre">
                                     <label for="brandId" class="fr_lbltexto"> Marca </label>
-                                    <select name="brandId" id="" required>
+                                    <select name="brandId" id="brandId" class="control <%= locals.errors && errors.brandId ? 'is-invalid' : null %>">
                                         <option value="0" disabled>- Seleccione una marca - </option>
                                         <% allBrands.forEach(brand => { %>
                                         <option value="<%= brand.id %>"<% if (product.brandId == brand.id) { %><%= 'selected' %><% }; %>><%= brand.name %></option>
                                         <% }); %>
                                     </select>
+                                </div>
+                                <div id="brand_error" class="error is-invalid">
+                                    <%= locals && locals.errors && locals.errors.brandId && locals.errors.brandId.msg %>
                                 </div>
                                 <div class="fr_nombre">
                                     <label class="fr_lbltexto" for="name">Nombre</label>
@@ -75,22 +81,27 @@
                                 </div>
                                 <div class="fr_email">
                                     <label for="colorId" class="fr_lbltexto"> Color </label>
-                                    <select name="colorId" id="" required>
+                                    <select name="colorId" id="colorId" class="control <%= locals.errors && errors.colorId ? 'is-invalid' : null %>">
                                         <option value="0" disabled>- Seleccione un color- </option>
                                         <% allColors.forEach(color => { %>
                                         <option value="<%= color.id %>"<% if (product.colorId == color.id) { %><%= 'selected' %><% }; %>><%= color.name %></option>
                                         <% }); %>
                                     </select>
                                 </div>
-                                
+                                <div id="color_error" class="error is-invalid">
+                                    <%= locals && locals.errors && locals.errors.colorId && locals.errors.colorId.msg %>
+                                </div>
                                 <div class="fr_email">
                                     <label for="sizeId" class="fr_lbltexto"> Talle </label>
-                                    <select name="sizeId" id="" required>
+                                    <select name="sizeId" id="sizeId" class="control <%= locals.errors && errors.sizeId ? 'is-invalid' : null %>">
                                         <option value="0" disabled>- Seleccione un talle- </option>
                                         <% allSizes.forEach(size => { %>
                                         <option value="<%= size.id %>"<% if (product.sizeId == size.id) { %><%= 'selected' %><% }; %>><%= size.name %></option>
                                         <% }); %>
                                     </select>
+                                </div>
+                                <div id="size_error" class="error is-invalid">
+                                    <%= locals && locals.errors && locals.errors.sizeId && locals.errors.sizeId.msg %>
                                 </div>
                                 <div class="fr_email">
                                     <label class="fr_lbltexto" for="stock"> Stock</label>
@@ -124,12 +135,15 @@
                             </div>
                             <div class="fr_email">
                                 <label for="visibilityId" class="fr_lbltexto"> Visibilidad </label>
-                                <select name="visibilityId" id="" required>
+                                <select name="visibilityId" id="visibilityId" class="control <%= locals.errors && errors.visibilityId ? 'is-invalid' : null %>">
                                     <option value="0" disabled>- Seleccione Visibilidad del producto- </option>
                                     <% allVisibilities.forEach(visibility => { %>
                                     <option value="<%= visibility.id %>"<% if (product.visibilityId == visibility.id) { %><%= 'selected' %><% }; %>><%= visibility.name %></option>
                                     <% }); %>
                                 </select>
+                            </div>
+                            <div id="visibility_error" class="error is-invalid">
+                                <%= locals && locals.errors && locals.errors.visibilityIdId && locals.errors.visibilityIdId.msg %>
                             </div>
                                 <!--</div>-->
                                 <br><br><br>
