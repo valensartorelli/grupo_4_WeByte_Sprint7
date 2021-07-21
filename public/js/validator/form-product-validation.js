@@ -8,7 +8,8 @@ const description = document.querySelector("#description");
 const descriptionExt = document.querySelector("#extended_description");
 const price = document.querySelector("#price");
 const stock = document.querySelector("#stock");
-//const image1 = document.querySelector("#image1");
+
+const acceptedExtensions = ['JPG', 'jpg', 'png', 'gif', 'jpeg'];
 
 // Eventos
 form.addEventListener('submit', function (e) {
@@ -44,6 +45,10 @@ descriptionExt.addEventListener('blur', descriptionExtValidator);
 price.addEventListener('blur', priceValidator);
 stock.addEventListener('blur', stockValidator);
 image1.addEventListener('change', image1Validator);
+image2.addEventListener('change', image2Validator);
+image3.addEventListener('change', image3Validator);
+image4.addEventListener('change', image4Validator);
+image5.addEventListener('change', image5Validator);
 
 
 // Funciones 
@@ -214,147 +219,116 @@ function visibilityValidator () {
 // imagen obligatoria
 function image1Validator () {
     const image1 = document.querySelector("#image1");
-    //let id = 'image_error';
     const image1Error = document.querySelector("#image1_error");
-    let file  = req.files.image1;
-    let file2 = req.files.image2;
-    let file3 = req.files.image3;
-	let file4 = req.files.image4;
-    let file5 = req.files.image5;
-    let oldImage1 = req.body.oldImage1;
-    let oldImage2 = req.body.oldImage2;
-    let oldImage3 = req.body.oldImage3;
-    let oldImage4 = req.body.oldImage4;
-    let oldImage5 = req.body.oldImage4;
-
-    let acceptedExtensions = ['.JPG', '.JPEG', '.jpg', '.png', '.gif'];
-    let fileExtension = path.extname(file [0].originalname);
-        
-        if (!file && !file2 && !file3 && !file4 && !file5 && oldImage1 == "" && oldImage2 == "" && oldImage3 == "" && oldImage4 == "" && oldImage5 == ""){
-            //writeMsg( { imageError , msg: 'Tienes que subir una imagenssssss' } );
-			image1Error.innerText = 'Tienes que subir una imagenssssss';
-           // image1.classList.add('error-input');
-            return true;
-        } 
-                
+    let feedback = ''; 
+    console.log(image1);
+   console.log("-----------------------");
+    if(image1){
+        let filename = image1.value;
+        let fileExtension = filename.split(".").pop();
         if (!acceptedExtensions.includes(fileExtension)) {
-              //writeMsg( { id, msg: 'Solo se permite formato zaraza .gif, .png, .jpg y .jpeg' } );
-              //imageError.innerText = 'Solo se permite formato .gif, .png, .jpg y .jpeg';
-              image1Error.innerText = `Las extenciones de archivo permitidas son ${acceptedExtensions.join(', ')}`
-             // image1.classList.add('error-input');  
-              return true;
-            }
-            else{
-                image1Error.innerText = "";
-             //   image1.classList.remove('error-input');
-                return false;
-            }
-                
+            feedback = `Las extenciones de archivo permitidas sonnnnn ${acceptedExtensions.join(', ')}`    
+        }
+    }
+    if (feedback) {
+        image1Error.innerText = feedback;
+        errors.image1 = feedback;
 
-    // if (inputImage.files.length != 1) {
-    //     writeMsg( { id, msg: 'Se deben subir minimo una imagen' } );
-    //     inputImage.classList.add('error-input');
-    //     return true
-    // }
+    }else{
+        image1Error.innerText = '';   
+    }
 
 }
 
 function image2Validator () {
-    const image2 = document.querySelector("#image2");
-    //let id = 'image_error';
-    const imageError = document.querySelector("#image2_error");
-    let file = req.files.image2;
-    let oldImage2 = req.body.oldImage2;
+   const image2 = document.querySelector("#image2");
+   const image2Error = document.querySelector("#image2_error");
+    let feedback = ''; 
+    console.log(image2);
+   console.log("-----------------------");
+    if(image2){
+        let filename = image2.value;
+        let fileExtension = filename.split(".").pop();
+        if (!acceptedExtensions.includes(fileExtension)) {
+            feedback = `Las extenciones de archivo permitidas sonnnn ${acceptedExtensions.join(', ')}` 
+        }
+        
+    }
+    if (feedback) {
+        image2Error.innerText = feedback;
+        errors.image2 = feedback;
 
-    let acceptedExtensions = ['.JPG', '.JPEG', '.jpg', '.png', '.gif'];
-
-    if(file){
-        let fileExtension = path.extname(file [0].originalname);
-       if (!acceptedExtensions.includes(fileExtension)) {
-              //writeMsg( { id, msg: 'Solo se permite formato zaraza .gif, .png, .jpg y .jpeg' } );
-              imageError.innerText = 'Solo se permite formato .gif, .png, .jpg y .jpeg';
-              //image2.classList.add('error-input');  
-              return true;
-            }
-            else{
-                imageError.innerText = "";
-                //image2.classList.remove('error-input');
-                return false;
-            }
-}
+    }else{
+        image2Error.innerText = '';
+    }
 }
 
 function image3Validator () {
-    const image3 = document.querySelector("#image3");
-    const imageError = document.querySelector("#image3_error");
-    let file = req.files.image3;
-    let oldImage3 = req.body.oldImage3;
-
-    let acceptedExtensions = ['.JPG', '.JPEG', '.jpg', '.png', '.gif'];
-
-    if(file){
-        let fileExtension = path.extname(file [0].originalname);
+   const image3 = document.querySelector("#image3");
+   const image3Error = document.querySelector("#image3_error");
+   let feedback = ''; 
+   console.log(image3);
+  console.log("-----------------------");
+   if(image3){
+       let filename = image3.value;
+       let fileExtension = filename.split(".").pop();
        if (!acceptedExtensions.includes(fileExtension)) {
-              //writeMsg( { id, msg: 'Solo se permite formato zaraza .gif, .png, .jpg y .jpeg' } );
-              imageError.innerText = 'Solo se permite formato .gif, .png, .jpg y .jpeg';
-              //image3.classList.add('error-input');  
-              return true;
-            }
-            else{
-                imageError.innerText = "";
-               // image3.classList.remove('error-input');
-                return false;
-            }
-}
+           feedback = `Las extenciones de archivo permitidas sonnnnn ${acceptedExtensions.join(', ')}`
+           
+       }
+       
+   }
+   if (feedback) {
+    image3Error.innerText = feedback;
+       errors.image3 = feedback;
+
+   }else{
+    image3Error.innerText = '';   
+   }
 }
 
 function image4Validator () {
     const image4 = document.querySelector("#image4");
-    const imageError = document.querySelector("#image4_error");
-    let file = req.files.image4;
-    let oldImage4 = req.body.oldImage4;
+    const image4Error = document.querySelector("#image4_error");
+    let feedback = ''; 
+    console.log(image4);
+   console.log("-----------------------");
+    if(image4){
+        let filename = image4.value;
+        let fileExtension = filename.split(".").pop();
+        if (!acceptedExtensions.includes(fileExtension)) {
+            feedback = `Las extenciones de archivo permitidas sonnnn ${acceptedExtensions.join(', ')}` 
+        }
+    }
+    if (feedback) {
+        image4Error.innerText = feedback;
+        errors.image4 = feedback;
 
-    let acceptedExtensions = ['.JPG', '.JPEG', '.jpg', '.png', '.gif'];
-
-    if(file){
-        let fileExtension = path.extname(file [0].originalname);
-       if (!acceptedExtensions.includes(fileExtension)) {
-              //writeMsg( { id, msg: 'Solo se permite formato zaraza .gif, .png, .jpg y .jpeg' } );
-              imageError.innerText = 'Solo se permite formato .gif, .png, .jpg y .jpeg';
-             // image4.classList.add('error-input');  
-              return true;
-            }
-            else{
-                imageError.innerText = "";
-               // image4.classList.remove('error-input');
-                return false;
-            }
-}
+    }else{
+        image4Error.innerText = '';  
+    }
 }
 
 function image5Validator () {
     const image5 = document.querySelector("#image5");
-    //let id = 'image_error';
-    const imageError = document.querySelector("#image5_error");
-    let file = req.files.image5;
-    let oldImage5 = req.body.oldImage5;
+    const image5Error = document.querySelector("#image5_error");
+    let feedback = ''; 
+    console.log(image5);
+   console.log("-----------------------");
+    if(image5){
+        let filename = image5.value;
+        let fileExtension = filename.split(".").pop();
+        if (!acceptedExtensions.includes(fileExtension)) {
+            feedback = `Las extenciones de archivo permitidas sonnn ${acceptedExtensions.join(', ')}`
+        }
+    }
+    if (feedback) {
+        image5Error.innerText = feedback;
+        errors.image5 = feedback;
 
-    let acceptedExtensions = ['.JPG', '.JPEG', '.jpg', '.png', '.gif'];
-
-    if(file){
-        let fileExtension = path.extname(file [0].originalname);
-       if (!acceptedExtensions.includes(fileExtension)) {
-              //writeMsg( { id, msg: 'Solo se permite formato zaraza .gif, .png, .jpg y .jpeg' } );
-              imageError.innerText = 'Solo se permite formato .gif, .png, .jpg y .jpeg';
-             // image5.classList.add('error-input');  
-              return true;
-            }
-            else{
-                imageError.innerText = "";
-              //  image5.classList.remove('error-input');
-                return false;
-            }
-}
+    }else{
+        image5Error.innerText = '';
+    }
 }   
 
 // fin onload
