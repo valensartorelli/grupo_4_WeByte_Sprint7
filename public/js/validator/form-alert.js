@@ -2,7 +2,7 @@ window.addEventListener("load", function(){
 
 // Capturar elementos
 
-let form = document.querySelector("#createProduct");
+let form = document.querySelector("#form-registro");
 
     form.addEventListener("submit", function(e){
     e.preventDefault();

@@ -15,7 +15,18 @@
                     
                     <div class="pd_producto-img">
                         <div class="pd_prod-left">
-                            <form action="/product/update/<%= product.id %>?_method=PUT" method="POST" enctype="multipart/form-data">
+
+                             <!-- pregunto si es la primera vezque se ingresa.... variables locales son Undefined-->   
+                        <% if (locals.errors == undefined) { %>
+                            <form action="/product/update/<%= product.id %>?_method=PUT" method="POST" enctype="multipart/form-data" id="product-edit">
+                           <% } %>
+            
+                   <!-- el caso de validar errores debo tomar productId p/no perder la referencia desde el controlador (ARRIBA ESTA product.id )-->           
+                           <% if (locals.errors) { %>
+                            <form action="/product/update/<%=  productId %>?_method=PUT" method="POST" enctype="multipart/form-data" id="product-edit">
+                           <% } %>
+                           <!-- hasta aca form -->
+
                                 <div class="fr_nombre">
                                     <label class="fr_lbltexto" for="categoryId" > Categoria </label>
                                     <select name="categoryId" id="" required>
@@ -36,19 +47,31 @@
                                 </div>
                                 <div class="fr_nombre">
                                     <label class="fr_lbltexto" for="name">Nombre</label>
-                                    <input type="text" name="name" id="" value="<%= product.name %>" required>
+                                    <input type="text" name="name" id="name" value="<%= locals && locals.product ? product.name : null %>" class="control <%if(locals&&locals.errors&&errors.name){%><%="error-input is-invalid"%><%}%>">
+                                    <span id="name_error" class="error is-invalid">
+                                        <%= locals && locals.errors && locals.errors.name && locals.errors.name.msg %>
+                                    </span>
                                 </div>
                                 <div class="fr_email">
                                     <label class="fr_lbltexto" for="description"> Descripción </label>
-                                    <input type="textarea" name="description" id="" value="<%= product.description %>" required>
+                                    <input type="textarea" name="description" id="description" value="<%= locals && locals.product ? product.description : null %>" class="control <%if(locals&&locals.errors&&errors.description){%><%="error-input is-invalid"%><%}%>">
+                                    <span id="description_error" class="error is-invalid">
+                                        <%= locals && locals.errors && locals.errors.description && locals.errors.description.msg %>
+                                    </span>
                                 </div>
                                 <div class="fr_email">
                                     <label class="fr_lbltexto" for="extended"> Descripción ampliada</label>
-                                    <textarea name="extended_description" id=""><%= product.extended_description %></textarea>
+                                    <textarea name="extended_description" id="extended_description" class="control <%if(locals&&locals.errors&&errors.extended_description){%><%="error-input is-invalid"%><%}%>"><%= locals && locals.product ? product.extended_description : null %></textarea>
+                                    <span id="descriptionExt_error" class="error is-invalid">
+                                        <%= locals && locals.errors && locals.errors.extended_description && locals.errors.extended_description.msg %>
+                                    </span>
                                 </div>
                                 <div class="fr_email">
                                     <label class="fr_lbltexto" for="price"> Precio </label>
-                                    <input type="text" name="price" id="" value="<%= product.price %>" required>
+                                    <input type="text" name="price" id="price" value="<%= locals && locals.product ? product.price : null %>" class="control <%if(locals&&locals.errors&&errors.price){%><%="error-input is-invalid"%><%}%>">
+                                    <span id="price_error" class="error is-invalid">
+                                        <%= locals && locals.errors && locals.errors.price && locals.errors.price.msg %>
+                                    </span>
                                 </div>
                                 <div class="fr_email">
                                     <label for="colorId" class="fr_lbltexto"> Color </label>
@@ -71,7 +94,10 @@
                                 </div>
                                 <div class="fr_email">
                                     <label class="fr_lbltexto" for="stock"> Stock</label>
-                                    <input type="text" name="stock" id="" value="<%= product.stock %>" required>
+                                    <input type="text" name="stock" id="stock" value="<%= locals && locals.product ? product.stock : null %>" class="control <%if(locals&&locals.errors&&errors.stock){%><%="error-input is-invalid"%><%}%>">
+                                    <span id="stock_error" class="error is-invalid">
+                                        <%= locals && locals.errors && locals.errors.stock && locals.errors.stock.msg %>
+                                    </span>
                                 </div>
                                 <div class="fr_email">
                                     <label class="fr_lbltexto" for="stock_min"> Stock Minimo</label>
@@ -81,6 +107,7 @@
                                     <label class="fr_lbltexto" for="stock_max"> Stock Maximo</label>
                                     <input type="text" name="stock_max" id="" value="<%= product.stock_max %>" >
                                 </div>
+                                
                                 <div class="fr_email">
                                     <%i=0%>
                                     <% product.images.forEach( image => { %>
@@ -90,7 +117,6 @@
                                         </article>
                                     <% }) %>
                                 </div>
-                                
                                 
                                 <div class="fr_email check-x">
                                     <label for="home" class="fr_lbltexto"> Destacado Home </label> 
@@ -137,6 +163,8 @@
         </main>
 
         <%- include('../partials/footer') %>
+
+       <script src="/js/validator/form-product-edit-validation.js"></script>
 
             <!-- Bootstrap Bundle with Popper -->
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"

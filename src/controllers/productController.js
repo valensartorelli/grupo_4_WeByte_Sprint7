@@ -150,16 +150,6 @@ const productController = {
                 home: req.body.home,
                 extended_description: req.body.extended_description,
             });
-            // let imagesCreated = await Image.create (
-            //     {
-            //     name: req.file.filename,
-            //     productId: productCreated.id
-                
-            // })
-             
-            // console.log(imagesCreated);
-            // return res.redirect('/product');
-            // agrega las imagenes
             let product = req.body;
             let imagesForProduct = [];                                
 
@@ -210,25 +200,36 @@ const productController = {
     },
 
     update: async (req, res) =>{
+        console.log('entre en el Edit product')
+        console.log('----------------------------')
+    // validacion trae las relaciones
+    const product = await db.Product.findByPk(req.params.id);
+    let allCategories = await Category.findAll();
+    let allBrands = await Brand.findAll();
+    let allColors = await Color.findAll();
+    let allSizes = await Size.findAll();
+    let allVisibilities = await Visibility.findAll();
+    let allImage = Image.findAll();
+    // validacion del create
+    const errors = validationResult(req);
+    
+    if (errors.errors.length > 0) {
+        return res.render('products/productEdit', {
+        product,
+        allCategories,
+        allBrands,
+        allColors,
+        allSizes,
+        allVisibilities,
+        allImage,
+        productId : req.params.id,
+        errors: errors.mapped(),
+        oldData: req.body //Esto es para que no se vaya borrando lo que uno escribe
+
+      });
+    }    
+      
         try {
-        //let product = req.body;
-        // console.log(' soy la nueva: ' + req.body.image1)
-        // console.log('soy la vieja '+ req.body.oldImag1)
-        // product.image1 = req.file ? req.file.filename : req.body.oldImage1;
-        // if (req.file===undefined) {
-        //     product.image1 = req.body.oldImage1
-        // }
-        
-        // else {
-        //     // Actualizaron la foto, saco su nombre del proceso
-        //     product.image = req.file.filename
-
-        // }
-        // console.log('.......MOSTRAR LA IMAGEN1.......')
-        // console.log(product.image1)
-        // console.log(product)  
-        // delete product.oldImage1
-
         let productId = req.params.id;
         const productUpdate = await Product.update(
                 {
@@ -252,19 +253,9 @@ const productController = {
             );
             console.log('------------------muestra datos del req.body');
             console.log(productUpdate);
-
-            // let productImages = await Image.update({
-            //     name: product.image
-                
-            // },
-
-            //     {where: {productId: productId}});
-
-            // console.log('------------------muestra datos del la imagen');
-            // console.log(productImages);
             
             let imagesForProduct = [];                           
-
+            
             if (req.files.image1) imagesForProduct.push({name: req.files.image1[0].filename, image_num:1})
             if (req.files.image2) imagesForProduct.push({name: req.files.image2[0].filename, image_num:2})
             if (req.files.image3) imagesForProduct.push({name: req.files.image3[0].filename, image_num:3})

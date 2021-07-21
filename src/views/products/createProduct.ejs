@@ -17,12 +17,12 @@
                         <div class="pd_prod-left">
                             <form action="/product/create" id="product" method="POST" enctype="multipart/form-data">
                                 <div class="fr_nombre">
-                                    <label for="category" class="fr_lbltexto"> Categoria </label>
-                                    <select name="categoryId" id="category" class="control <%if(locals&&locals.errors&&errors.categoryId){%><%="error-input is-invalid"%><%}%>">
+                                    <label for="categoryId" class="fr_lbltexto"> Categoria </label>
+                                    <select name="categoryId" id="categoryId" class="control <%= locals.errors && errors.categoryId ? 'is-invalid' : null %>">
                                         <option value="" disabled selected>- Seleccione una categoria - </option>
                                         <% allCategories.forEach(category => { %>
                                         <option value="<%= category.id %>"
-                                            <% if (locals.oldData && oldData.categoryId == category.id) { %>
+                                            <% if (locals && locals.oldData && oldData.categoryId == category.id) { %>
                                                 selected="selected" 
                                             <% } %>>
                                             <%= category.name %>
@@ -35,8 +35,8 @@
                                     </div>
                                 </div>
                                 <div class="fr_nombre">
-                                    <label for="brand" class="fr_lbltexto"> Marca </label>
-                                    <select name="brandId" id="brand" class="control <%= locals.errors && errors.brandId ? 'is-invalid' : null %>">
+                                    <label for="brandId" class="fr_lbltexto"> Marca </label>
+                                    <select name="brandId" id="brandId" class="control <%= locals.errors && errors.brandId ? 'is-invalid' : null %>">
                                         <option value="" disabled selected>- Seleccione una marca - </option>
                                         <% allBrands.forEach(brand => { %>
                                         <option value="<%= brand.id %>"
@@ -47,9 +47,9 @@
                                         </option>
                                         <% }); %>
                                     </select>
-                                    <% if(locals.errors && errors.brandId){ %>
-                                        <div class="is-invalid"><%= errors.brandId.msg %></div>
-                                    <% } %>
+                                    <div id="brand_error" class="error is-invalid">
+                                        <%= locals && locals.errors && locals.errors.brandId && locals.errors.brandId.msg %>
+                                    </div>
                                     
                                 </div>
                                 <div class="fr_nombre">
@@ -81,8 +81,8 @@
                                     </span>
                                 </div>
                                 <div class="fr_email">
-                                    <label for="color" class="fr_lbltexto"> Color </label>
-                                    <select name="colorId" id="color" class="control <%= locals.errors && errors.colorId ? 'is-invalid' : null %>">
+                                    <label for="colorId" class="fr_lbltexto"> Color </label>
+                                    <select name="colorId" id="colorId" class="control <%= locals.errors && errors.colorId ? 'is-invalid' : null %>">
                                         <option value="" disabled selected>- Seleccione un color- </option>
                                         <% allColors.forEach(color => { %>
                                         <option value="<%= color.id %>"
@@ -93,13 +93,13 @@
                                         </option>
                                         <% }); %>
                                     </select>
-                                    <% if (locals.errors && errors.colorId) { %>
-                                        <div class="is-invalid"> <%= errors.colorId.msg %></div>
-                                        <% } %>
+                                    <div id="color_error" class="error is-invalid">
+                                        <%= locals && locals.errors && locals.errors.colorId && locals.errors.colorId.msg %>
+                                    </div>
                                 </div>
                                 <div class="fr_email">
-                                    <label for="size" class="fr_lbltexto"> Talle </label>
-                                    <select name="sizeId" id="size" class="control <%= locals.errors && errors.sizeId ? 'is-invalid' : null %>">
+                                    <label for="sizeId" class="fr_lbltexto"> Talle </label>
+                                    <select name="sizeId" id="sizeId" class="control <%= locals.errors && errors.sizeId ? 'is-invalid' : null %>">
                                         <option value="" disabled selected>- Seleccione un talle- </option>
                                         <% allSizes.forEach(size => { %>
                                         <option value="<%= size.id %>"
@@ -110,9 +110,9 @@
                                         </option>
                                         <% }); %>
                                     </select>
-                                    <% if (locals.errors && errors.sizeId) { %>
-                                        <div class="is-invalid"> <%= errors.sizeId.msg %></div>
-                                        <% } %>
+                                    <div id="size_error" class="error is-invalid">
+                                        <%= locals && locals.errors && locals.errors.sizeId && locals.errors.sizeId.msg %>
+                                    </div>
                                 </div>
                                 <div class="fr_email">
                                     <label class="fr_lbltexto" for="stock"> Stock</label>
@@ -129,25 +129,25 @@
                                     <label class="fr_lbltexto" for="stock_max"> Stock Maximo</label>
                                     <input type="text" name="stock_max" id="stock_max">
                                 </div>
+                                <!--ACA IMAGEN 1 -->
                                 <div class="fr_email">
                                     <label class="fr_lbltexto" for="image1"> Imagen 1 de producto </label>
                                     <input 
                                     type="file" 
                                     name="image1"
                                     id="image1"
-                                    class="control <%= locals.errors && errors.image1 ? 'is-invalid' : null %>"
+                                    class="control <%if(locals&&locals.errors&&errors.image1){%><%="error-input is-invalid"%><%}%>" 
                                     >
                                     <input 
                                         type="hidden" 
                                         name="oldImage1" 
                                         value="<%= locals.oldData ? oldData.image1 : '' %>"
                                     >        
-                                    <% if (locals.errors && errors.image1) { %>
-                                        <div class="is-invalid">
-                                            <%= errors.image1.msg %>
-                                        </div>
-                                    <% } %>
                                 </div>
+                                <span id="image1_error" class="error is-invalid">
+                                    <%= locals && locals.errors && locals.errors.image1 && locals.errors.image1.msg %>
+                                </span>
+                                 <!--ACA IMAGEN 2 -->
                                 <div class="fr_email">
                                     <label class="fr_lbltexto" for="image2"> Imagen 2 de producto </label>
                                     <input 
@@ -161,13 +161,12 @@
                                         name="oldImage2" 
                                         value="<%= locals.oldData ? oldData.image2 : '' %>"
                                     >        
-                                    <% if (locals.errors && errors.image2) { %>
-                                        <div class="is-invalid">
-                                            <%= errors.image2.msg %>
-                                        </div>
-                                    <% } %>
+                                    <span id="image2_error" class="error is-invalid">
+                                        <%= locals && locals.errors && locals.errors.image2 && locals.errors.image2.msg %>
+                                    </span>
 
                                 </div>
+                                 <!--ACA IMAGEN 3 -->
                                 <div class="fr_email">
                                     <label class="fr_lbltexto" for="image3"> Imagen 3 de producto </label>
                                     <input 
@@ -181,12 +180,11 @@
                                         name="oldImage3" 
                                         value="<%= locals.oldData ? oldData.image3 : '' %>"
                                     >        
-                                    <% if (locals.errors && errors.image3) { %>
-                                        <div class="is-invalid">
-                                            <%= errors.image3.msg %>
-                                        </div>
-                                    <% } %>
+                                    <span id="image3_error" class="error is-invalid">
+                                        <%= locals && locals.errors && locals.errors.image3 && locals.errors.image3.msg %>
+                                    </span>
                                 </div>
+                                 <!--ACA IMAGEN 4 -->
                                 <div class="fr_email">
                                     <label class="fr_lbltexto" for="image4"> Imagen 4 de producto </label>
                                     <input 
@@ -200,12 +198,11 @@
                                         name="oldImage4" 
                                         value="<%= locals.oldData ? oldData.image4 : '' %>"
                                     >        
-                                    <% if (locals.errors && errors.image4) { %>
-                                        <div class="is-invalid">
-                                            <%= errors.image4.msg %>
-                                        </div>
-                                    <% } %>
+                                    <span id="image4_error" class="error is-invalid">
+                                        <%= locals && locals.errors && locals.errors.image4 && locals.errors.image4.msg %>
+                                    </span>
                                 </div>
+                                 <!--ACA IMAGEN 5 -->
                                 <div class="fr_email">
                                     <label class="fr_lbltexto" for="image5"> Imagen 5 de producto </label>
                                     <input 
@@ -219,19 +216,18 @@
                                         name="oldImage5" 
                                         value="<%= locals.oldData ? oldData.image5 : '' %>"
                                     >        
-                                    <% if (locals.errors && errors.image5) { %>
-                                        <div class="is-invalid">
-                                            <%= errors.image5.msg %>
-                                        </div>
-                                    <% } %>
+                                    <span id="image5_error" class="error is-invalid">
+                                        <%= locals && locals.errors && locals.errors.image5 && locals.errors.image5.msg %>
+                                    </span>
                                 </div>
+                                 <!-- FIN IMAGENES -->
                                 <div class="fr_email check-x">
                                     <label for="home" class="fr_lbltexto"> Destacado Home </label> 
                                       <input type="checkbox" name="home" id="home" >
                             </div>
                             <div class="fr_email">
-                                <label for="visibility" class="fr_lbltexto"> Visibilidad </label>
-                                <select name="visibilityId" id="visibility" class="control <%= locals.errors && errors.visibilityId ? 'is-invalid' : null %>">
+                                <label for="visibilityId" class="fr_lbltexto"> Visibilidad </label>
+                                <select name="visibilityId" id="visibilityId" class="control <%= locals.errors && errors.visibilityId ? 'is-invalid' : null %>">
                                     <option value="" disabled selected>- Seleccione Visibilidad del producto- </option>
                                     <% allVisibilities.forEach(visibility => { %>
                                     <option value="<%= visibility.id %>"
@@ -242,9 +238,9 @@
                                     </option>
                                     <% }); %>
                                 </select>
-                                <% if (locals.errors && errors.visibilityId) { %>
-                                    <div class="is-invalid"> <%= errors.visibilityId.msg %></div>
-                                    <% } %>
+                                <div id="visibility_error" class="error is-invalid">
+                                    <%= locals && locals.errors && locals.errors.visibilityIdId && locals.errors.visibilityIdId.msg %>
+                                </div>
                             </div>
                                 <!--</div>-->
                                 <br><br><br>
