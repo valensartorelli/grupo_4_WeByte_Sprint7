@@ -36,7 +36,7 @@ module.exports = [
                 console.log(fileExtension);
                 console.log("-------------------");
                 if (!acceptedExtensions.includes(fileExtension)) {
-                    throw new Error (`Las extenciones de archivo permitidas son ${acceptedExtensions.join(', ')}`);
+                    throw new Error (`Las extensiones de archivo permitidas son ${acceptedExtensions.join(', ')}`);
                 } 
         }
         return true;
@@ -49,7 +49,7 @@ module.exports = [
         if(file){
             let fileExtension = path.extname(file [0].originalname);
            if (!acceptedExtensions.includes(fileExtension)) {
-                throw new Error (`Las extenciones de archivo permitidas son ${acceptedExtensions.join(', ')}`);
+                throw new Error (`Las extensiones de archivo permitidas son ${acceptedExtensions.join(', ')}`);
             } 
         }
         return true;
@@ -62,7 +62,7 @@ module.exports = [
         if(file){
             let fileExtension = path.extname(file [0].originalname);
            if (!acceptedExtensions.includes(fileExtension)) {
-                throw new Error (`Las extenciones de archivo permitidas son ${acceptedExtensions.join(', ')}`);
+                throw new Error (`Las extensiones de archivo permitidas son ${acceptedExtensions.join(', ')}`);
             } 
         }
         return true;
@@ -75,7 +75,7 @@ module.exports = [
         if(file){
             let fileExtension = path.extname(file [0].originalname);
            if (!acceptedExtensions.includes(fileExtension)) {
-                throw new Error (`Las extenciones de archivo permitidas son ${acceptedExtensions.join(', ')}`);
+                throw new Error (`Las extensiones de archivo permitidas son ${acceptedExtensions.join(', ')}`);
             } 
         }
         return true;
@@ -88,7 +88,7 @@ module.exports = [
         if(file){
             let fileExtension = path.extname(file [0].originalname);
            if (!acceptedExtensions.includes(fileExtension)) {
-                throw new Error (`Las extenciones de archivo permitidas son ${acceptedExtensions.join(', ')}`);
+                throw new Error (`Las extensiones de archivo permitidas son ${acceptedExtensions.join(', ')}`);
             } 
         }
         return true;
