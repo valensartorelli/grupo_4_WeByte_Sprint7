@@ -34,10 +34,6 @@ window.addEventListener("load", function(){
             writeMsg( { id, msg: 'El nombre del Talle no puede estar vacío' } );
             firstName.classList.add('is-invalid');
             return true
-        } else if (name.value.length < 2) {
-            writeMsg( { id, msg: 'El nombre del Talle debe tener al menos 2 caracteres' } );
-            firstName.classList.add('is-invalid');
-            return true
         }
         writeMsg( { id, msg: '' } );
         email.classList.remove('is-invalid');
