@@ -26,7 +26,7 @@ module.exports = [
         console.log(file);
      
         console.log("--------Validacion img1-----------");
-        let acceptedExtensions = ['.JPG', '.JPEG', '.jpg', '.png', '.gif'];
+        let acceptedExtensions = ['.JPG', '.JPEG', '.jpg', '.png', '.gif', '.jpeg', '.PNG', '.GIF'];
         
         if (!file && !file2 && !file3 && !file4 && !file5 && oldImage1 == "" && oldImage2 == "" && oldImage3 == "" && oldImage4 == "" && oldImage5 == ""){
 			throw new Error('Tienes que subir una imagen');
@@ -36,7 +36,7 @@ module.exports = [
                 console.log(fileExtension);
                 console.log("-------------------");
                 if (!acceptedExtensions.includes(fileExtension)) {
-                    throw new Error (`Las extenciones de archivo permitidas son ${acceptedExtensions.join(', ')}`);
+                    throw new Error (`Las extensiones de archivo permitidas son ${acceptedExtensions.join(', ')}`);
                 } 
         }
         return true;
@@ -44,12 +44,12 @@ module.exports = [
 	body('image2').custom((value, {req}) =>{
         let file = req.files.image2;
         let oldImage2 = req.body.oldImage2;
-        let acceptedExtensions = ['.JPG', '.jpg', '.png', '.gif'];
+        let acceptedExtensions = ['.JPG', '.JPEG', '.jpg', '.png', '.gif', '.jpeg', '.PNG', '.GIF'];
         //console.log(file.originalname);
         if(file){
             let fileExtension = path.extname(file [0].originalname);
            if (!acceptedExtensions.includes(fileExtension)) {
-                throw new Error (`Las extenciones de archivo permitidas son ${acceptedExtensions.join(', ')}`);
+                throw new Error (`Las extensiones de archivo permitidas son ${acceptedExtensions.join(', ')}`);
             } 
         }
         return true;
@@ -57,12 +57,12 @@ module.exports = [
 	body('image3').custom((value, {req}) =>{
         let file = req.files.image3;
         let oldImage3 = req.body.oldImage3;
-        let acceptedExtensions = ['.JPG', '.jpg', '.png', '.gif'];
+        let acceptedExtensions = ['.JPG', '.JPEG', '.jpg', '.png', '.gif', '.jpeg', '.PNG', '.GIF'];
         //console.log(file.originalname);
         if(file){
             let fileExtension = path.extname(file [0].originalname);
            if (!acceptedExtensions.includes(fileExtension)) {
-                throw new Error (`Las extenciones de archivo permitidas son ${acceptedExtensions.join(', ')}`);
+                throw new Error (`Las extensiones de archivo permitidas son ${acceptedExtensions.join(', ')}`);
             } 
         }
         return true;
@@ -70,12 +70,12 @@ module.exports = [
 	body('image4').custom((value, {req}) =>{
         let file = req.files.image4;
         let oldImage4 = req.body.oldImage4;
-        let acceptedExtensions = ['.JPG', '.jpg', '.png', '.gif'];
+        let acceptedExtensions = ['.JPG', '.JPEG', '.jpg', '.png', '.gif', '.jpeg', '.PNG', '.GIF'];
         //console.log(file.originalname);
         if(file){
             let fileExtension = path.extname(file [0].originalname);
            if (!acceptedExtensions.includes(fileExtension)) {
-                throw new Error (`Las extenciones de archivo permitidas son ${acceptedExtensions.join(', ')}`);
+                throw new Error (`Las extensiones de archivo permitidas son ${acceptedExtensions.join(', ')}`);
             } 
         }
         return true;
@@ -83,12 +83,12 @@ module.exports = [
 	body('image5').custom((value, {req}) =>{
         let file = req.files.image5;
         let oldImage5 = req.body.oldImage5;
-        let acceptedExtensions = ['.JPG', '.jpg', '.png', '.gif'];
+        let acceptedExtensions = ['.JPG', '.JPEG', '.jpg', '.png', '.gif', '.jpeg', '.PNG', '.GIF'];
         //console.log(file.originalname);
         if(file){
             let fileExtension = path.extname(file [0].originalname);
            if (!acceptedExtensions.includes(fileExtension)) {
-                throw new Error (`Las extenciones de archivo permitidas son ${acceptedExtensions.join(', ')}`);
+                throw new Error (`Las extensiones de archivo permitidas son ${acceptedExtensions.join(', ')}`);
             } 
         }
         return true;

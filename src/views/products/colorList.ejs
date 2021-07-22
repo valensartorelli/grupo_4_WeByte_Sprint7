@@ -23,10 +23,14 @@
             <section id="pd_listado-products" >
                 <div class="container">
                     <div>    
-                        <form action="/color/create" method="POST">
+                        <form action="/color/create" id="form-color"  method="POST">
                         <div class="fr_nombre">
                             <label class="fr_lbltexto">ABM Colores</label>
-                            <input type="text" name="name" id="" required>
+                            <input type="text" name="name" id="name" required>
+                            <span id="name_error" class="error is-invalid">
+                                <%= locals && locals.errors && locals.errors.name &&
+                                    locals.errors.name.msg %>
+                            </span>
                         </div>
                         <br>
                         <div class="fr_registro">
@@ -58,6 +62,7 @@
         </main>
         
         <%- include('../partials/footer') %>
+        <script src="/js/validator/form-color-validation.js"></script>
 
         <!-- Bootstrap Bundle with Popper -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
