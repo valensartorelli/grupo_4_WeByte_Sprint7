@@ -9,7 +9,7 @@ const descriptionExt = document.querySelector("#extended_description");
 const price = document.querySelector("#price");
 const stock = document.querySelector("#stock");
 
-const acceptedExtensions = ['JPG', 'jpg', 'png', 'gif', 'jpeg'];
+const acceptedExtensions = ['JPG', 'jpg', 'png', 'gif', 'jpeg', 'JPEG', 'PNG', 'GIF'];
 
 // Eventos
 form.addEventListener('submit', function (e) {
