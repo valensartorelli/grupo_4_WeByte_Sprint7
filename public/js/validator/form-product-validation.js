@@ -23,12 +23,7 @@ form.addEventListener('submit', function (e) {
         color: colorValidator(),
         size: sizeValidator(),
         stock: stockValidator(),
-        image1: image1Validator(),
-        image2: image2Validator(),
-        image3: image3Validator(),
-        image4: image4Validator(),
-        image5: image5Validator(),
-        visivility: visibilityValidator(),
+        visivility: visibilityValidator()
     };
 
 
@@ -216,7 +211,7 @@ function visibilityValidator () {
 
 
 
-// imagen obligatoria
+// imagenes
 function image1Validator () {
     const image1 = document.querySelector("#image1");
     const image1Error = document.querySelector("#image1_error");

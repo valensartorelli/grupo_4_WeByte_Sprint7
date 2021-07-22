@@ -28,7 +28,7 @@ form.addEventListener('submit', function (e) {
     
 
     if ( hasErrors.category || hasErrors.brand || hasErrors.name || hasErrors.description || hasErrors.descriptionExt || hasErrors.price 
-        || hasErrors.color || hasErrors.size || hasErrors.stock || hasErrors.visivility 
+        || hasErrors.color || hasErrors.size || hasErrors.stock || hasErrors.visivility
     ) e.preventDefault();
     
 
@@ -39,6 +39,7 @@ description.addEventListener('blur', descriptionValidator);
 descriptionExt.addEventListener('blur', descriptionExtValidator);
 price.addEventListener('blur', priceValidator);
 stock.addEventListener('blur', stockValidator);
+
 
 // Funciones 
 writeMsg = ( ...arrToWrite ) => {
@@ -205,7 +206,7 @@ function visibilityValidator () {
     }
 }
 
-   
+
 
 // fin onload
 })
