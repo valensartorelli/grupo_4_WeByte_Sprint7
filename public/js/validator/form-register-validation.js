@@ -9,7 +9,8 @@ window.addEventListener("load", function(){
     let password = document.getElementById("password");
     let repassword = document.getElementById("repassword");
     let avatar = document.getElementById("avatar");
-    let rol = document.querySelector("#rol").selectedIndex;
+    let rol = document.querySelector('#rolId');
+    let rolIndex = document.getElementById("rolId").value;
     let btnReg = document.getElementById("btn-reg");
     let errorElement = document.getElementById('error');
 
@@ -17,8 +18,9 @@ window.addEventListener("load", function(){
 
     // Eventos
     form.addEventListener('submit', function(e){
-        e.preventDefault();
+        //e.preventDefault();
         //alert("entre aca!")
+        //alert(rol)
 
         let hasErrors = {
             firstName: nameValidator(),
@@ -33,7 +35,7 @@ window.addEventListener("load", function(){
 
 
         // Si hay errores, prevengo la accion por defecto
-        if ( hasErrors.firstName || hasErrors.lastName || hasErrors.userName || hasErrors.email || hasErrors.password || hasErrors.repassword || hasErrors.avatar || hasErrors.rol
+        if ( hasErrors.rol || hasErrors.firstName || hasErrors.lastName || hasErrors.userName || hasErrors.email || hasErrors.password || hasErrors.repassword || hasErrors.avatar
             ) e.preventDefault();
     });
 
@@ -45,6 +47,7 @@ window.addEventListener("load", function(){
     password.addEventListener('blur', passwordValidator);
     repassword.addEventListener('blur', repasswordValidator);
     avatar.addEventListener('change', avatarValidator);
+    rol.addEventListener('blur', rolValidator);
 
     // Escribe el mensaje
     writeMsg = ( ...arrToWrite ) => {
@@ -180,13 +183,17 @@ window.addEventListener("load", function(){
     }
 
     function rolValidator () {
-        const errorRol = document.querySelector("#rol_error");
-        if( rol == null || rol == 0 ) {	
-            errorRol.innerText = 'Debe seleccionar una categoríaaaa';
+        let errorRol = document.querySelector("#rol_error");
+        //alert("Rol: " + rol);
+        //alert("Rol index: " + rolIndex);
+
+        if( rol.value == null || rol.value == 0 ) {	
+            errorRol.innerText = 'Debe seleccionar un rol de usuario';
+            rol.classList.add('is-invalid');   
             return true;
-        }
-        else{
+        } else {
             errorRol.innerText = '';
+            rol.classList.remove('is-invalid'); 
             return false;
         }
     }
